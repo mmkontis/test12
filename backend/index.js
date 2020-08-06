@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
+import routes from './routes/carRoutes';
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,8 @@ mongoose.connect('mongodb://localhost/carsDB', {
 // Body parser setup
 app.use(bodyparser.urlencoded({ extended: true}));
 app.use(bodyparser.json());
+
+routes(app);
 
 app.get('/', (req, res) =>
     res.send(`Node and Express running on port ${PORT}`)
