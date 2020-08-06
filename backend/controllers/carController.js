@@ -31,3 +31,12 @@ export const getCarWithId = (req, res) => {
         res.json(Car);
     });
 };
+
+export const updateCar = (req, res) => {
+    Car.findOneAndUpdate({ _id: req.params.CarId }, req.body, { new: true }, (err, Car) => {
+        if (err) {
+            rest.send(err);
+        }
+        res.json(Car);
+    });
+};

@@ -1,7 +1,8 @@
 import { 
     addNewCar,
     getCars,
-    getCarWithId
+    getCarWithId,
+    updateCar
 } from '../controllers/carController';
 
 const routes = (app) => {
@@ -10,7 +11,8 @@ const routes = (app) => {
         .post(addNewCar);
 
     app.route('/car/:CarId')
-        .get(getCarWithId);
+        .get(getCarWithId)
+        .put(updateCar);
 }
 
 export default routes;
