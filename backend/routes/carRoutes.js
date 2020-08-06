@@ -2,7 +2,8 @@ import {
     addNewCar,
     getCars,
     getCarWithId,
-    updateCar
+    updateCar,
+    deleteCar
 } from '../controllers/carController';
 
 const routes = (app) => {
@@ -12,7 +13,8 @@ const routes = (app) => {
 
     app.route('/car/:CarId')
         .get(getCarWithId)
-        .put(updateCar);
+        .put(updateCar)
+        .delete(deleteCar);
 }
 
 export default routes;

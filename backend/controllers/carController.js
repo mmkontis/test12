@@ -40,3 +40,12 @@ export const updateCar = (req, res) => {
         res.json(Car);
     });
 };
+
+export const deleteCar = (req, res) => {
+    Car.deleteOne({ _id: req.params.CarId }, (err, Car) => {
+        if (err) {
+            rest.send(err);
+        }
+        res.json({ message: 'Successfully deleted' });
+    });
+};
