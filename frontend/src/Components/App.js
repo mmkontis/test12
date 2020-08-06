@@ -42,7 +42,9 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12">Menu</div>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="/">Cars</a>
+          </nav>
         </div>
         <div className="row">
           <div className="col-3">
@@ -50,7 +52,7 @@ class App extends React.Component {
               updateCurrentCar={this.updateCurrentCar}
             />
           </div>
-          <div className="col-9"><Car /></div>
+          <div className="col-9"><Car car={this.state.currentCar} /></div>
         </div>
         <div className="row">
           <div className="col-12"><CarForm /></div>
