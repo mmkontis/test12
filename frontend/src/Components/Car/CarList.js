@@ -1,9 +1,17 @@
 import React from 'react';
 
-const CarList = () => {
+const CarList = (props) => {
     return ( 
         <div>
-            Car List
+            <ul className="list-group">
+                <li class="list-group-item header"><h4>Cars</h4></li>
+                {props.cars.map((item) => (
+                    <a href="#!" className="list-group-item" key={item._id}
+                    onClick={props.updateCurrentCar.bind(this, item)}>
+                        {item.name}
+                    </a>
+                ))}
+            </ul>
         </div>
      );
 }
