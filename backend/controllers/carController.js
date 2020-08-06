@@ -13,3 +13,12 @@ export const addNewCar = (req, res) => {
         res.json(Car);
     });
 };
+
+export const getCars = (req, res) => {
+    Car.find({}, (err, Car) => {
+        if (err) {
+            rest.send(err);
+        }
+        res.json(Car);
+    });
+};
