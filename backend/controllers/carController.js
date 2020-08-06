@@ -22,3 +22,12 @@ export const getCars = (req, res) => {
         res.json(Car);
     });
 };
+
+export const getCarWithId = (req, res) => {
+    Car.findById(req.params.CarId, (err, Car) => {
+        if (err) {
+            rest.send(err);
+        }
+        res.json(Car);
+    });
+};
