@@ -1,6 +1,6 @@
 # Univation Assessment
 
-Univation fullstack coding technical challenge. A 
+Univation fullstack coding technical challenge. 
 
 ## Prerequisites
 
