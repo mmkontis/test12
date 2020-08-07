@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import CarList from './Car/CarList';
-import Car from './Car/Car';
 import CarForm from './Car/CarForm';
 
 
@@ -10,11 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cars: [],
-      currentCar: {},
+      cars: []
     }
-
-    this.updateCurrentCar = this.updateCurrentCar.bind(this);
   }
 
   componentDidMount() {
@@ -31,31 +27,28 @@ class App extends React.Component {
       });
   };
 
-  updateCurrentCar(item) {
-    this.setState({
-      currentCar: item,
-    })
-  }
-
-
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">Cars</a>
-          </nav>
-        </div>
-        <div className="row">
-          <div className="col-3">
-            <CarList cars={this.state.cars}
-              updateCurrentCar={this.updateCurrentCar}
-            />
+      <div className="App">
+        <div className="container-fluid">
+          <div className="row navbar-row">
+            <nav className="navbar">
+              <span className="navbar-brand mb-0 h1">Knowledge Base for Automobiles</span>
+            </nav>
           </div>
-          <div className="col-9"><Car car={this.state.currentCar} /></div>
-        </div>
-        <div className="row">
-          <div className="col-12"><CarForm /></div>
+          <div className="body">
+            <div className="row">
+              <div className="col-7 mr-5">
+                <CarList cars={this.state.cars}
+                  updateCurrentCar={this.updateCurrentCar}
+                />
+              </div>
+              <div className="col-4 ml-3 form-area">
+                <div className="row nav"><h3>Add A New Car</h3></div>
+                <div className="row nav"><CarForm /></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

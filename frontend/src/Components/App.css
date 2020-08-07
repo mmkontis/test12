@@ -1,0 +1,56 @@
+.navbar-row {
+    display: block;
+    padding: 1em;
+}
+
+.body {
+    padding: 2em;
+}
+
+.navbar-brand {
+    font-size: 3em;
+    padding: 0.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.nav {
+    display: block;
+}
+
+.card-header {
+    background-color: white;
+}
+
+.card {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.btn-primary {
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    border: none;
+    margin-top: 1em;
+    border-radius: 25px;
+}
+
+.btn-link {
+    color: #0093E9;
+    font-size: 0.7em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.brand, .year {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 0.7em;
+}

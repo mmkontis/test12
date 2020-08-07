@@ -8,7 +8,7 @@ export const addNewCar = (req, res) => {
 
     newCar.save((err, Car) => {
         if (err) {
-            rest.send(err);
+            res.send(err);
         }
         res.json(Car);
     });
