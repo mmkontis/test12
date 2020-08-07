@@ -19,7 +19,7 @@ This is a guide to replicate and run the application in development mode.
 3. Open the 'backend' folder in one terminal and execute the following commands to install backend dependencies and insert test data into MongoDB:
 ```bash
 npm install
-node loadTestData.js
+nodemon ./loadTestData.js --exec babel-no -e js
 npm start
 ```
 4. Open the 'frontend' folder in the other terminal and execute the following commands to install frontend dependencies:

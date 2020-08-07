@@ -8,7 +8,9 @@ mongoose.connect('mongodb://localhost/carsDB', {
     useUnifiedTopology: true
 });
 
-CarSchema.insertMany([
+var Car = mongoose.model('Car', CarSchema);
+
+Car.insertMany([
     {
       "name": "575 M Maranello",
       "brand": "Ferrari",
