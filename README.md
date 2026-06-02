@@ -1,45 +1,74 @@
-# Univation Assessment
+# Workaway
 
-Univation fullstack coding technical challenge. 
+**An AI-powered operating system for small businesses.** Workaway brings a
+landing page, a website builder, a CRM, finances, tasks, and a team of AI
+agents together behind a single login.
 
-## Prerequisites
+Built with **Next.js (App Router)**, **SQLite** (via `better-sqlite3` — the
+smallest possible SQL setup, no server to run), **Tailwind CSS**, and a tiny
+agent framework ("pi") wired to **Google Gemini**.
 
-To run this project you will need:
-- node.js
-- npm
-- mongodb
+## Features
 
-## Setting Up
-This is a guide to replicate and run the application in development mode.
+| Area | What it does |
+|------|--------------|
+| 🌐 Landing page | Public marketing page at `/` |
+| 🔐 Login | Simple email + password auth (signed-cookie sessions) |
+| 📊 Dashboard | Live widgets: profit, pipeline, overdue, tasks |
+| 🛠️ Website builder | Edit landing-page blocks and publish to `/site/<slug>` |
+| 👥 Contacts (CRM) | Full create/edit/delete of leads & customers |
+| 💰 Economics | Track income/expenses, see profit & overdue |
+| ✅ Tasks | Lightweight shared kanban board |
+| 🤖 AI agents | Ops, Sales & Finance copilots that read your data and act via tools |
 
-1. Download the repository to your local machine.
+## Getting started
 
-2. Open two terminal windows.
-
-3. Open the 'backend' folder in one terminal and execute the following commands to install backend dependencies and insert test data into MongoDB:
 ```bash
 npm install
-nodemon ./loadTestData.js --exec babel-no -e js
-npm start
-```
-4. Open the 'frontend' folder in the other terminal and execute the following commands to install frontend dependencies:
-```bash
-npm install
-npm start
+cp .env.example .env.local   # then fill in GEMINI_API_KEY
+npm run dev
 ```
 
-## Usage
+Open http://localhost:3000.
 
-**Backend**
+**Demo login:** `demo@workaway.io` / `workaway`
 
-The backend is hosted on http://localhost:4000/.
+## Environment variables
 
-http://localhost:4000/cars returns all cars stored in the database.
+Set these in `.env.local` (never commit it):
 
-**Frontend**
+- `GEMINI_API_KEY` — Google Gemini key from https://aistudio.google.com/app/apikey
+- `GEMINI_MODEL` — defaults to `gemini-2.0-flash`
+- `AUTH_SECRET` — random string used to sign session cookies
 
-The frontend is hosted on http://localhost:3000/.
+Without `GEMINI_API_KEY` the app still runs; the AI agents degrade gracefully
+and tell you they need a key.
 
-It displays a list of all cars stored in the database. Click on a car to view its details.
+## Project structure
 
-The form on the right can be filled and submitted to add a new car to the database.
+```
+app/
+  page.js               Landing page
+  login/                Login page
+  dashboard/            Authenticated app (overview, builder, contacts,
+                        economics, tasks, agents)
+  site/[slug]/          Published websites from the builder
+  api/                  Route handlers (auth, contacts, transactions,
+                        tasks, sites, agents)
+lib/
+  db.js                 SQLite connection, schema, seed, password hashing
+  data.js               Query helpers shared by API + agent tools
+  auth.js               Signed-cookie sessions
+  agent/                "pi" agent framework + Gemini adapter + tools
+components/             Sidebar, SiteEditor, AgentChat
+```
+
+The SQLite database is created automatically at `data/workaway.sqlite` on
+first run and seeded with demo data. It is gitignored.
+
+## The "pi" agent framework
+
+`lib/agent/pi.js` defines agents as a system prompt + a set of tools, and runs
+a tool-calling loop on top of the Gemini adapter (`lib/agent/gemini.js`).
+Tools (`lib/agent/tools.js`) act on the real database — so an agent can read
+your finances, summarise your pipeline, or create a contact/task for you.
